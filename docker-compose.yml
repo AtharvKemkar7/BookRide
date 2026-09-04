@@ -1,0 +1,15 @@
+services:
+  mariadb:
+    image: mariadb:11
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_USER: rideshare
+      MARIADB_PASSWORD: rideshare
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb-data:/var/lib/mysql
+      - ./infra/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql:ro
+
+volumes:
+  mariadb-data:

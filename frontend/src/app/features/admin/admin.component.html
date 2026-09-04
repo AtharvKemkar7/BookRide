@@ -1,0 +1,91 @@
+<section class="ops">
+  <header>
+    <div>
+      <p class="eyebrow">Operations</p>
+      <h1>City control room</h1>
+      <p>Users, fleet, live trips and dispatch alerts in one console.</p>
+    </div>
+  </header>
+
+  @if (loading()) {
+    <p>Loading operations data...</p>
+  } @else {
+    <div class="metrics">
+      <article>
+        <span>Accounts</span>
+        <strong>{{ users().length }}</strong>
+      </article>
+      <article>
+        <span>Active trips</span>
+        <strong>{{ stats()?.inProgress || 0 }}</strong>
+      </article>
+      <article>
+        <span>Completed</span>
+        <strong>{{ stats()?.completed || 0 }}</strong>
+      </article>
+      <article>
+        <span>Revenue</span>
+        <strong>{{ stats()?.completedRevenue || 0 | currency }}</strong>
+      </article>
+    </div>
+
+    <div class="grid">
+      <section>
+        <h2>Users</h2>
+        @for (user of users(); track user.id) {
+          <div class="row">
+            <div>
+              <strong>{{ user.fullName }}</strong>
+              <small>{{ user.role }} · {{ user.email }}</small>
+            </div>
+            @if (user.role !== 'ADMIN') {
+              <button type="button" (click)="toggleUser(user)">
+                {{ user.active ? 'Suspend' : 'Restore' }}
+              </button>
+            } @else {
+              <em>Protected</em>
+            }
+          </div>
+        }
+      </section>
+
+      <section>
+        <h2>Fleet</h2>
+        @for (driver of drivers(); track driver.id) {
+          <div class="row">
+            <div>
+              <strong>{{ driver.fullName }}</strong>
+              <small>{{ driver.vehicleMakeModel }} · {{ driver.status.replaceAll('_', ' ') }}</small>
+            </div>
+            <em>{{ driver.rating }}</em>
+          </div>
+        }
+      </section>
+
+      <section>
+        <h2>Live trips</h2>
+        @for (trip of trips().slice(0, 6); track trip.id) {
+          <div class="row">
+            <div>
+              <strong>#{{ trip.id }} · {{ trip.rideType }}</strong>
+              <small>{{ trip.pickupAddress }} -> {{ trip.dropoffAddress }}</small>
+            </div>
+            <em>{{ trip.status.replaceAll('_', ' ') }}</em>
+          </div>
+        }
+      </section>
+
+      <section>
+        <h2>Alerts</h2>
+        @for (alert of alerts().slice(0, 6); track alert.id) {
+          <div class="row">
+            <div>
+              <strong>{{ alert.title }}</strong>
+              <small>{{ alert.createdAt | date:'short' }} · {{ alert.status }}</small>
+            </div>
+          </div>
+        }
+      </section>
+    </div>
+  }
+</section>

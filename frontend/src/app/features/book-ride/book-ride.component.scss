@@ -1,0 +1,81 @@
+.book {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 1.25rem;
+}
+
+.panel {
+  background: white;
+  border-radius: 28px;
+  padding: 1.5rem;
+  display: grid;
+  gap: 0.9rem;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.06);
+}
+
+label,
+select,
+button {
+  font: inherit;
+}
+
+label {
+  display: grid;
+  gap: 0.35rem;
+  font-weight: 600;
+}
+
+select {
+  border: 1px solid #dbe3ee;
+  border-radius: 14px;
+  padding: 0.8rem;
+}
+
+.types {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.4rem;
+}
+
+.types button {
+  border: 1px solid #dbe3ee;
+  background: white;
+  border-radius: 12px;
+  padding: 0.6rem 0.2rem;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.types button.active,
+.primary {
+  background: #111827;
+  color: white;
+  border-color: #111827;
+}
+
+.primary {
+  border: 0;
+  border-radius: 14px;
+  padding: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.quote strong {
+  display: block;
+  font-size: 1.8rem;
+}
+
+.ok {
+  color: #16a34a;
+  margin: 0;
+  font-weight: 700;
+}
+
+@media (max-width: 960px) {
+  .book,
+  .types {
+    grid-template-columns: 1fr;
+  }
+}

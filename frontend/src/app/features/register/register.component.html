@@ -1,0 +1,21 @@
+<section class="auth-shell">
+  <form [formGroup]="form" (ngSubmit)="submit()" class="card">
+    <h2>Create account</h2>
+    <label>Full name <input formControlName="fullName"></label>
+    <label>Email <input type="email" formControlName="email"></label>
+    <label>Phone <input formControlName="phone"></label>
+    <label>Password <input type="password" formControlName="password"></label>
+    <label>
+      Role
+      <select formControlName="role">
+        <option value="PASSENGER">Passenger</option>
+        <option value="DRIVER">Driver</option>
+      </select>
+    </label>
+    @if (error()) {
+      <p class="error">{{ error() }}</p>
+    }
+    <button type="submit" [disabled]="loading()">{{ loading() ? 'Creating...' : 'Register' }}</button>
+    <a routerLink="/login">Back to sign in</a>
+  </form>
+</section>

@@ -1,0 +1,15 @@
+<section>
+  <h1>Fleet</h1>
+  <div class="grid">
+    @for (driver of drivers(); track driver.id) {
+      <article>
+        <header>
+          <strong>{{ driver.fullName }}</strong>
+          <span>{{ driver.status.replaceAll('_', ' ') }}</span>
+        </header>
+        <p>{{ driver.vehicleMakeModel }} · {{ driver.licensePlate }}</p>
+        <p>{{ driver.vehicleType }} · {{ driver.rating }} rating · {{ driver.completedTrips }} trips</p>
+      </article>
+    }
+  </div>
+</section>

@@ -1,0 +1,51 @@
+h1 {
+  margin-bottom: 1rem;
+}
+
+.table {
+  display: grid;
+  gap: 0.8rem;
+}
+
+article {
+  background: white;
+  border-radius: 20px;
+  padding: 1rem 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.05);
+}
+
+p,
+small {
+  margin: 0.2rem 0 0;
+  color: #64748b;
+}
+
+.actions {
+  display: grid;
+  justify-items: end;
+  gap: 0.5rem;
+}
+
+span {
+  font-weight: 700;
+  font-size: 0.82rem;
+  color: #2563eb;
+}
+
+button {
+  border: 0;
+  background: #111827;
+  color: white;
+  border-radius: 999px;
+  padding: 0.5rem 0.9rem;
+  cursor: pointer;
+}
+
+@media (max-width: 720px) {
+  article {
+    flex-direction: column;
+  }
+}

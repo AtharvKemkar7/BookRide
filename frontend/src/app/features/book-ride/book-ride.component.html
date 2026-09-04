@@ -1,0 +1,41 @@
+<section class="book">
+  <form [formGroup]="form" class="panel">
+    <h1>Book a ride</h1>
+    <label>
+      Pickup
+      <select formControlName="pickup" (change)="refreshQuote()">
+        @for (place of places; track place.label) {
+          <option [value]="place.label">{{ place.label }}</option>
+        }
+      </select>
+    </label>
+    <label>
+      Dropoff
+      <select formControlName="dropoff" (change)="refreshQuote()">
+        @for (place of places; track place.label) {
+          <option [value]="place.label">{{ place.label }}</option>
+        }
+      </select>
+    </label>
+    <div class="types">
+      @for (type of rideTypes; track type) {
+        <button type="button" [class.active]="form.controls.rideType.value === type" (click)="form.controls.rideType.setValue(type); refreshQuote()">
+          {{ type }}
+        </button>
+      }
+    </div>
+    @if (quote(); as q) {
+      <div class="quote">
+        <strong>{{ q.estimatedFare | currency }}</strong>
+        <span>{{ q.etaMinutes }} min · {{ q.distanceKm }} km</span>
+      </div>
+    }
+    <button class="primary" type="button" (click)="book()" [disabled]="loading()">
+      {{ loading() ? 'Requesting...' : 'Confirm ride' }}
+    </button>
+    @if (trip(); as booked) {
+      <p class="ok">Trip #{{ booked.id }} is {{ booked.status }}.</p>
+    }
+  </form>
+  <app-map-preview [pickup]="form.controls.pickup.value" [dropoff]="form.controls.dropoff.value" [eta]="quote()?.etaMinutes || 7" />
+</section>

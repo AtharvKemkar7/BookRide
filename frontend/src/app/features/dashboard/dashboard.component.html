@@ -1,0 +1,53 @@
+<section class="dash">
+  <div class="intro">
+    <div>
+      <p class="eyebrow">Good evening, {{ auth.currentUser()?.fullName }}</p>
+      <h1>Where to next?</h1>
+      <p>Real-time matching across economy, comfort, XL and premium fleets.</p>
+    </div>
+    <a routerLink="/app/book" class="cta">Book a ride</a>
+  </div>
+
+  <div class="metrics">
+    <article>
+      <span>Active trip</span>
+      <strong>{{ activeTrip ? activeTrip.status.replaceAll('_', ' ') : 'None' }}</strong>
+    </article>
+    <article>
+      <span>Completed rides</span>
+      <strong>{{ completedCount }}</strong>
+    </article>
+    <article>
+      <span>Drivers nearby</span>
+      <strong>{{ availableDrivers }}</strong>
+    </article>
+    <article>
+      <span>Avg ETA</span>
+      <strong>6 min</strong>
+    </article>
+  </div>
+
+  <div class="split">
+    <app-map-preview
+      [pickup]="activeTrip?.pickupAddress || 'Union Square'"
+      [dropoff]="activeTrip?.dropoffAddress || 'Palace of Fine Arts'"
+      [eta]="activeTrip?.etaMinutes || 8"
+    />
+    <aside>
+      <h2>Live activity</h2>
+      @if (loading()) {
+        <p>Loading fleet data...</p>
+      } @else {
+        @for (trip of trips().slice(0, 4); track trip.id) {
+          <div class="row">
+            <div>
+              <strong>{{ trip.pickupAddress }}</strong>
+              <small>{{ trip.dropoffAddress }}</small>
+            </div>
+            <em>{{ trip.status.replaceAll('_', ' ') }}</em>
+          </div>
+        }
+      }
+    </aside>
+  </div>
+</section>

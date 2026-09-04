@@ -1,0 +1,27 @@
+<header class="nav">
+  <a class="brand" routerLink="/app/dashboard">
+    <span class="mark">RS</span>
+    <span>
+      <strong>RideShare</strong>
+      <small>City mobility</small>
+    </span>
+  </a>
+  <nav>
+    <a routerLink="/app/dashboard" routerLinkActive="active">Dashboard</a>
+    @if (!auth.isAdmin()) {
+      <a routerLink="/app/book" routerLinkActive="active">Book ride</a>
+    }
+    <a routerLink="/app/trips" routerLinkActive="active">Trips</a>
+    <a routerLink="/app/drivers" routerLinkActive="active">Drivers</a>
+    @if (auth.isAdmin()) {
+      <a routerLink="/app/admin" routerLinkActive="active">Admin</a>
+    }
+  </nav>
+  <div class="account">
+    <div>
+      <strong>{{ auth.currentUser()?.fullName }}</strong>
+      <small>{{ auth.currentUser()?.role }}</small>
+    </div>
+    <button type="button" (click)="auth.logout()">Sign out</button>
+  </div>
+</header>

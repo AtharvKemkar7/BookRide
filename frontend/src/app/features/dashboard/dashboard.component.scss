@@ -1,0 +1,91 @@
+.intro,
+.metrics,
+.split {
+  display: grid;
+  gap: 1rem;
+}
+
+.intro {
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  margin-bottom: 1.5rem;
+}
+
+.intro h1 {
+  margin: 0.2rem 0 0.4rem;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+}
+
+.eyebrow {
+  color: #2563eb;
+  font-weight: 700;
+  margin: 0;
+}
+
+.cta {
+  background: #111827;
+  color: white;
+  text-decoration: none;
+  padding: 0.9rem 1.3rem;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.metrics {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.metrics article,
+aside,
+.app-map-preview,
+app-map-preview {
+  background: white;
+  border-radius: 24px;
+  padding: 1.1rem 1.2rem;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.06);
+}
+
+.metrics span,
+.row small {
+  color: #64748b;
+  font-size: 0.82rem;
+}
+
+.metrics strong {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 1.4rem;
+}
+
+.split {
+  grid-template-columns: 1.4fr 0.8fr;
+  margin-top: 1.2rem;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid #eef2f7;
+}
+
+.row strong,
+.row small {
+  display: block;
+}
+
+.row em {
+  font-style: normal;
+  font-size: 0.78rem;
+  color: #2563eb;
+  font-weight: 700;
+}
+
+@media (max-width: 960px) {
+  .metrics,
+  .split,
+  .intro {
+    grid-template-columns: 1fr;
+  }
+}

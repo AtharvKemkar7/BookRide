@@ -1,0 +1,20 @@
+<section>
+  <h1>Trip history</h1>
+  <div class="table">
+    @for (trip of trips(); track trip.id) {
+      <article>
+        <div>
+          <strong>#{{ trip.id }} · {{ trip.rideType }}</strong>
+          <p>{{ trip.pickupAddress }} -> {{ trip.dropoffAddress }}</p>
+          <small>{{ trip.createdAt | date:'short' }} · {{ trip.estimatedFare | currency }}</small>
+        </div>
+        <div class="actions">
+          <span>{{ trip.status.replaceAll('_', ' ') }}</span>
+          @if (trip.status !== 'COMPLETED' && trip.status !== 'CANCELLED') {
+            <button type="button" (click)="advance(trip)">Advance status</button>
+          }
+        </div>
+      </article>
+    }
+  </div>
+</section>

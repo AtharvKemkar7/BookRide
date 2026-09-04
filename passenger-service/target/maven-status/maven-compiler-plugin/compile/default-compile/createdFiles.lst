@@ -1,0 +1,10 @@
+com\rideshare\passenger\exception\GlobalExceptionHandler.class
+com\rideshare\passenger\exception\ApiException.class
+com\rideshare\passenger\controller\PassengerController.class
+com\rideshare\passenger\PassengerServiceApplication.class
+com\rideshare\passenger\config\DataSeeder.class
+com\rideshare\passenger\repository\PassengerRepository.class
+com\rideshare\passenger\service\PassengerService.class
+com\rideshare\passenger\entity\Passenger.class
+com\rideshare\passenger\config\CorsConfig.class
+com\rideshare\passenger\dto\PassengerRequest.class
